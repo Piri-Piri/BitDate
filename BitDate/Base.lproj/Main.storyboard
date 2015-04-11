@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D127a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NBu-nw-Qt6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NBu-nw-Qt6">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BitDate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PageController" id="BYZ-38-t0r" customClass="ViewController" customModule="BitDate" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -21,6 +22,82 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-55" y="238"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="u2p-jh-tWe">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="MdN-Gf-Jru" customClass="LoginViewController" customModule="BitDate" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3UG-xL-F7I"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Dx-6M-9n9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gfC-7b-Lq0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUH-eg-vGv">
+                                <rect key="frame" x="229" y="285" width="143" height="30"/>
+                                <state key="normal" title="Login with Facebook">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedFBLogin:" destination="MdN-Gf-Jru" eventType="touchUpInside" id="sjh-E0-Pi2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="vUH-eg-vGv" secondAttribute="centerX" constant="-0.5" id="cJo-SF-8aH"/>
+                            <constraint firstAttribute="centerY" secondItem="vUH-eg-vGv" secondAttribute="centerY" id="trt-p9-idu"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HSB-KA-TwX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="691" y="238"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="XKi-KG-rDh">
+            <objects>
+                <viewController id="bz4-fy-iuv" customClass="ProfileViewController" customModule="BitDate" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CwO-tb-pjo"/>
+                        <viewControllerLayoutGuide type="bottom" id="9FL-F1-5Rh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZzM-Ir-K0Y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2uC-Pc-65Y">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6HC-sG-JcD">
+                                <rect key="frame" x="16" y="566" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6HC-sG-JcD" firstAttribute="trailing" secondItem="ZzM-Ir-K0Y" secondAttribute="trailingMargin" id="9KQ-Uj-1iA"/>
+                            <constraint firstItem="2uC-Pc-65Y" firstAttribute="leading" secondItem="ZzM-Ir-K0Y" secondAttribute="leadingMargin" constant="-16" id="DHn-YV-tT0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2uC-Pc-65Y" secondAttribute="trailing" constant="-16" id="PaZ-wn-l8q"/>
+                            <constraint firstItem="9FL-F1-5Rh" firstAttribute="top" secondItem="6HC-sG-JcD" secondAttribute="bottom" constant="13" id="YVZ-Ad-AS6"/>
+                            <constraint firstItem="2uC-Pc-65Y" firstAttribute="top" secondItem="CwO-tb-pjo" secondAttribute="bottom" id="d8e-Gt-dO6"/>
+                            <constraint firstItem="6HC-sG-JcD" firstAttribute="top" secondItem="2uC-Pc-65Y" secondAttribute="bottom" constant="15" id="fkt-PQ-vyC"/>
+                            <constraint firstItem="6HC-sG-JcD" firstAttribute="leading" secondItem="ZzM-Ir-K0Y" secondAttribute="leadingMargin" id="lv6-RV-CSW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="5ji-be-XQk"/>
+                    <connections>
+                        <outlet property="imageView" destination="2uC-Pc-65Y" id="KHL-oS-WFA"/>
+                        <outlet property="nameLabel" destination="6HC-sG-JcD" id="813-3p-F6C"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TVc-yO-DFc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-88" y="1655"/>
         </scene>
         <!--Cards View Controller-->
         <scene sceneID="tId-nn-nqI">
@@ -61,7 +138,7 @@
         <!--Navigation Controller-->
         <scene sceneID="t5b-l5-bqS">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NBu-nw-Qt6" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CardsNavController" automaticallyAdjustsScrollViewInsets="NO" id="NBu-nw-Qt6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BoL-FW-KrP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -75,6 +152,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1qp-fC-rI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-815" y="928"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iPP-zZ-HWX">
+            <objects>
+                <navigationController storyboardIdentifier="ProfileNavController" automaticallyAdjustsScrollViewInsets="NO" id="VbP-v6-rGh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xEb-3U-JDv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bz4-fy-iuv" kind="relationship" relationship="rootViewController" id="EWz-W9-FBW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m9h-Ez-9MQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-815" y="1648"/>
         </scene>
     </scenes>
 </document>

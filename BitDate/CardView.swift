@@ -14,6 +14,22 @@ class CardView: UIView {
     private let imageView: UIImageView = UIImageView()
     private let nameLabel: UILabel = UILabel()
     
+    var name: String? {
+        didSet {
+            if let name = name {
+                nameLabel.text = name
+            }
+        }
+    }
+    
+    var image: UIImage? {
+        didSet {
+            if let image = image {
+                imageView.image = image
+            }
+        }
+    }
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initialize()
@@ -24,15 +40,9 @@ class CardView: UIView {
         initialize()
     }
     
-    override init() {
-        super.init()
-        initialize()
-    }
-
-    
     private func initialize() {
         imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        imageView.backgroundColor = UIColor.redColor()
+        imageView.backgroundColor = UIColor.clearColor()
         addSubview(imageView)
         
         nameLabel.setTranslatesAutoresizingMaskIntoConstraints(false)

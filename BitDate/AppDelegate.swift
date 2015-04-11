@@ -18,8 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         Parse.setApplicationId("KQYdnHODuSjCBVOsydnCUusUTlOnSuAOQUSVT28J", clientKey: "rPKLUo5XQckQ3YxXlA5cN2FWdjBZFuwl4EFqwR0I")
+        PFFacebookUtils.initializeFacebook()
+        
+        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var initialVC: UIViewController
+        
+        if currentUser() != nil {
+            initialVC = pageController
+        }
+        else {
+            initialVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
+        }
+        self.window?.rootViewController = initialVC
+        self.window?.makeKeyAndVisible()
         
         return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication, withSession: PFFacebookUtils.session())
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -38,10 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        FBAppCall.handleDidBecomeActiveWithSession(PFFacebookUtils.session())
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        PFFacebookUtils.session()!.close()
     }
 
 

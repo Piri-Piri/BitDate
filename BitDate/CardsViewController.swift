@@ -13,7 +13,8 @@ class CardsViewController: UIViewController, SwipeViewDelegate {
     /* The CardsViewController should managed both views (!!! coding modular !!!) */
     struct Card {
         let cardView: CardView
-        let swipView: SwipeView
+        let swipeView: SwipeView
+        let user: User
     }
     
     let frontCardTopMargin: CGFloat = 0
@@ -24,6 +25,16 @@ class CardsViewController: UIViewController, SwipeViewDelegate {
     var backCard: Card?
     var frontCard: Card?
     
+    var users: [User]?
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationItem.titleView = UIImageView(image: UIImage(named: "nav-header"))
+        
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav-back-button"), style: UIBarButtonItemStyle.Plain, target: self, action: "goToProfile:")
+        navigationItem.setLeftBarButtonItem(leftBarButtonItem, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +42,21 @@ class CardsViewController: UIViewController, SwipeViewDelegate {
         // Do any additional setup after loading the view.
         cardStackView.backgroundColor = UIColor.clearColor()
         
-        backCard = createCard(backCardTopMargin)
-        cardStackView.addSubview(backCard!.swipView)
-        
-        frontCard = createCard(frontCardTopMargin)
-        cardStackView.addSubview(frontCard!.swipView)
-        
+        fetchUnviewedUsers({
+            fetchedUsers in
+            self.users = fetchedUsers
+            
+            if let card = self.popCard() {
+                self.frontCard = card
+                self.cardStackView.addSubview(self.frontCard!.swipeView)
+            }
+            
+            if let card = self.popCard() {
+                self.backCard = card
+                self.backCard?.swipeView.frame = self.createCardFrame(self.backCardTopMargin)
+                self.cardStackView.insertSubview(self.backCard!.swipeView, belowSubview: self.frontCard!.swipeView)
+            }
+        })
     }
     
 
@@ -51,29 +71,62 @@ class CardsViewController: UIViewController, SwipeViewDelegate {
     }
     
     
-    private func createCard(topMargin: CGFloat) -> Card {
+    private func createCard(user: User) -> Card {
         let cardView = CardView()
-        let swipeView = SwipeView(frame: createCardFrame(topMargin))
+        cardView.name = user.name
+        user.getPhoto({
+            image in
+            cardView.image = image
+        })
+        
+        let swipeView = SwipeView(frame: createCardFrame(0))
         swipeView.delegate = self
         swipeView.innerView = cardView
         
-        return Card(cardView: cardView, swipView: swipeView)
+        return Card(cardView: cardView, swipeView: swipeView, user: user)
     }
     
+    private func popCard() -> Card? {
+        if users != nil && users?.count > 0 {
+            return createCard(users!.removeLast())
+        }
+        return nil
+    }
+    
+    private func switchCards() {
+        if let card = backCard {
+            frontCard = card
+            UIView.animateWithDuration(0.2, animations: {
+                self.frontCard!.swipeView.frame = self.createCardFrame(self.frontCardTopMargin)
+            })
+        }
+        
+        if let card = self.popCard() {
+            self.backCard = card
+            self.backCard!.swipeView.frame = self.createCardFrame(self.backCardTopMargin)
+            self.cardStackView.insertSubview(self.backCard!.swipeView, belowSubview: self.frontCard!.swipeView)
+        }
+    }
+    
+    func goToProfile(button: UIBarButtonItem) {
+        pageController.goToPreviousVC()
+    }
     
     // MARK: SwipeViewDelegate
     
     func swipedLeft() {
         //println("Left")
         if let frontCard = frontCard {
-            frontCard.swipView.removeFromSuperview()
+            frontCard.swipeView.removeFromSuperview()
+            switchCards()
         }
     }
     
     func swipedRight() {
         //println("Right")
         if let frontCard = frontCard {
-            frontCard.swipView.removeFromSuperview()
+            frontCard.swipeView.removeFromSuperview()
+            switchCards()
         }
     }
 }
