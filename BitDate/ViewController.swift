@@ -25,9 +25,6 @@ class ViewController: UIPageViewController, UIPageViewControllerDataSource {
         dataSource = self
         
         setViewControllers([cardsVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
-        
-        println(self)
-        println(pageController)
     }
 
     override func didReceiveMemoryWarning() {
