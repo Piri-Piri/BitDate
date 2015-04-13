@@ -70,16 +70,16 @@ class LoginViewController: UIViewController {
             }
             
             /* 
-                Is it a bug or an missing step in eliots videos?! 
+                May a bug or an missing step in eliots videos?!
+
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CardsNavController") as? UIViewController
+                self.presentViewController(vc!, animated: true, completion: nil)
+            
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PageController") as? UIViewController
+                self.presentViewController(vc!, animated: true, completion: nil)
             */
             
-            //let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CardsNavController") as? UIViewController
-            //self.presentViewController(vc!, animated: true, completion: nil)
-            
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PageController") as? UIViewController
-            self.presentViewController(vc!, animated: true, completion: nil)
-            
-            //self.presentViewController(pageController, animated: true, completion: nil)
+              self.presentViewController(pageController, animated: true, completion: nil)
         })
     }
 }
