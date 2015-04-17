@@ -37,16 +37,48 @@ func currentUser() -> User? {
 }
 
 func fetchUnviewedUsers(callback: ([User]) -> ()) {
-    PFUser.query()!.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
-    .findObjectsInBackgroundWithBlock( {
+    PFQuery(className: "Action")
+        .whereKey("byUser", equalTo: PFUser.currentUser()!.objectId!)
+        .findObjectsInBackgroundWithBlock {
         objects, error in
-        if let pfUsers = objects as? [PFUser] {
-            /* map is creating an array of Users (Class User) */
-            let users = map(pfUsers, {pfUserToUser($0)})
-            callback(users)
+            let seenIDS = map(objects!, {$0.objectForKey("toUser")!})
+            PFUser.query()!
+                .whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
+                .whereKey("objectId", notContainedIn: seenIDS)
+                .findObjectsInBackgroundWithBlock( {
+                    objects, error in
+                    if let pfUsers = objects as? [PFUser] {
+                        /* map is creating an array of Users (Class User) */
+                        let users = map(pfUsers, {pfUserToUser($0)})
+                        callback(users)
+                    }
+                    
+                }
+            )
         }
+}
+
+func saveLike(user: User) {
+    PFQuery(className: "Action")
+    .whereKey("byUser", equalTo: user.id)
+    .whereKey("toUser", equalTo: PFUser.currentUser()!.objectId!)
+    .whereKey("type", equalTo: "liked")
+    .getFirstObjectInBackgroundWithBlock( {
+        object, error in
+        
+        var matched = false
+        if let user = object {
+            matched = true
+            user.setObject("matched", forKey: "type")
+            user.saveInBackgroundWithBlock(nil)
         }
-    )
+        
+        let match = PFObject(className: "Action")
+        match.setObject(PFUser.currentUser()!.objectId!, forKey: "byUser")
+        match.setObject(user.id, forKey: "toUser")
+        match.setObject(matched ? "matched" : "liked", forKey: "type")
+        match.saveInBackgroundWithBlock(nil)
+    })
 }
 
 func saveSkip(user: User) {
@@ -56,5 +88,4 @@ func saveSkip(user: User) {
         skip.setObject(user.id, forKey: "toUser")
         skip.setObject("skipped", forKey: "type")
         skip.saveInBackgroundWithBlock(nil)
-        
 }

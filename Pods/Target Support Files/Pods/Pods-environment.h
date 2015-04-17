@@ -18,3 +18,9 @@
 #define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 23
 #define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 2
 
+// Firebase
+#define COCOAPODS_POD_AVAILABLE_Firebase
+#define COCOAPODS_VERSION_MAJOR_Firebase 2
+#define COCOAPODS_VERSION_MINOR_Firebase 2
+#define COCOAPODS_VERSION_PATCH_Firebase 1
+

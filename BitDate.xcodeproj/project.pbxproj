@@ -28,6 +28,8 @@
 		6309B6421ACB4DD4003F3130 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6309B6411ACB4DD4003F3130 /* libz.dylib */; };
 		6309B6441ACB4DE0003F3130 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6309B6431ACB4DE0003F3130 /* libsqlite3.dylib */; };
 		6320C7081AD7318F00EA7939 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6320C7071AD7318F00EA7939 /* ParseFacebookUtils.framework */; };
+		6337EB191AE1C076008060FE /* MatchesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6337EB181AE1C076008060FE /* MatchesTableViewController.swift */; };
+		6337EB1B1AE1C131008060FE /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6337EB1A1AE1C131008060FE /* UserCell.swift */; };
 		633B60781AD481F000CB6587 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B60771AD481F000CB6587 /* User.swift */; };
 		633B607A1AD483AF00CB6587 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B60791AD483AF00CB6587 /* ProfileViewController.swift */; };
 		6342DD501AD6ED5000773F26 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6342DD4E1AD6ED5000773F26 /* Parse.framework */; };
@@ -73,6 +75,8 @@
 		6309B6431ACB4DE0003F3130 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6309B6451ACB4F19003F3130 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		6320C7071AD7318F00EA7939 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		6337EB181AE1C076008060FE /* MatchesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesTableViewController.swift; sourceTree = "<group>"; };
+		6337EB1A1AE1C131008060FE /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		633B60771AD481F000CB6587 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		633B60791AD483AF00CB6587 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6342DD4E1AD6ED5000773F26 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 			children = (
 				6309B6211ACB28B6003F3130 /* CardView.swift */,
 				6309B6251ACB31A8003F3130 /* SwipeView.swift */,
+				6337EB1A1AE1C131008060FE /* UserCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				63E7A7071AD431DF00B832AF /* LoginViewController.swift */,
 				6309B6281ACB34E5003F3130 /* CardsViewController.swift */,
 				633B60791AD483AF00CB6587 /* ProfileViewController.swift */,
+				6337EB181AE1C076008060FE /* MatchesTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -377,11 +383,13 @@
 			files = (
 				63E7A7081AD431DF00B832AF /* LoginViewController.swift in Sources */,
 				6309B6031ACB27CA003F3130 /* ViewController.swift in Sources */,
+				6337EB191AE1C076008060FE /* MatchesTableViewController.swift in Sources */,
 				6309B6261ACB31A8003F3130 /* SwipeView.swift in Sources */,
 				6309B6291ACB34E5003F3130 /* CardsViewController.swift in Sources */,
 				6309B6221ACB28B6003F3130 /* CardView.swift in Sources */,
 				6309B6011ACB27CA003F3130 /* AppDelegate.swift in Sources */,
 				633B607A1AD483AF00CB6587 /* ProfileViewController.swift in Sources */,
+				6337EB1B1AE1C131008060FE /* UserCell.swift in Sources */,
 				633B60781AD481F000CB6587 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

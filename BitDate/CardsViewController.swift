@@ -21,6 +21,9 @@ class CardsViewController: UIViewController, SwipeViewDelegate {
     let backCardTopMargin: CGFloat = 10
     
     @IBOutlet weak var cardStackView: UIView!
+    @IBOutlet weak var nahButton: UIButton!
+    @IBOutlet weak var yeahButton: UIButton!
+    
     
     var backCard: Card?
     var frontCard: Card?
@@ -41,6 +44,9 @@ class CardsViewController: UIViewController, SwipeViewDelegate {
 
         // Do any additional setup after loading the view.
         cardStackView.backgroundColor = UIColor.clearColor()
+        
+        nahButton.setImage(UIImage(named: "nah-button-pressed"), forState: UIControlState.Highlighted)
+        yeahButton.setImage(UIImage(named: "yeah-button-pressed"), forState: UIControlState.Highlighted)
         
         fetchUnviewedUsers({
             fetchedUsers in
@@ -65,7 +71,19 @@ class CardsViewController: UIViewController, SwipeViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func nahButtonPressed(sender: UIButton) {
+        if let card = frontCard {
+            card.swipeView.swipe(SwipeView.Direction.Left)
+        }
+    }
 
+
+    @IBAction func yeahButtonPressed(sender: UIButton) {
+        if let card = frontCard {
+            card.swipeView.swipe(SwipeView.Direction.Right)
+        }
+    }
+    
     private func createCardFrame(topMargin: CGFloat) -> CGRect {
         return CGRect(x: 0, y: topMargin, width: cardStackView.frame.width, height: cardStackView.frame.height)
     }
@@ -127,6 +145,7 @@ class CardsViewController: UIViewController, SwipeViewDelegate {
         //println("Right")
         if let frontCard = frontCard {
             frontCard.swipeView.removeFromSuperview()
+            saveLike(frontCard.user)
             switchCards()
         }
     }
