@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7F67E759-C969-4092-99B7-37CD9BBC047B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BitDate</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>71BCB1340FC718655BE83CD37D4BC5516DA2E4BC</key>
+		<string>https://github.com/Piri-Piri/BitDate.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BitDate.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>71BCB1340FC718655BE83CD37D4BC5516DA2E4BC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Piri-Piri/BitDate.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>71BCB1340FC718655BE83CD37D4BC5516DA2E4BC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>71BCB1340FC718655BE83CD37D4BC5516DA2E4BC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BitDate</string>
+		</dict>
+	</array>
+</dict>
+</plist>
