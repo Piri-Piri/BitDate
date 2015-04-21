@@ -25,7 +25,7 @@ struct User {
     }
 }
 
-private func pfUserToUser(user: PFUser) -> User {
+func pfUserToUser(user: PFUser) -> User {
     return User(id: user.objectId!, name: user.objectForKey("firstName") as! String, pfUser: user)
 }
 
@@ -41,20 +41,21 @@ func fetchUnviewedUsers(callback: ([User]) -> ()) {
         .whereKey("byUser", equalTo: PFUser.currentUser()!.objectId!)
         .findObjectsInBackgroundWithBlock {
         objects, error in
-            let seenIDS = map(objects!, {$0.objectForKey("toUser")!})
-            PFUser.query()!
-                .whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
-                .whereKey("objectId", notContainedIn: seenIDS)
-                .findObjectsInBackgroundWithBlock( {
-                    objects, error in
-                    if let pfUsers = objects as? [PFUser] {
-                        /* map is creating an array of Users (Class User) */
-                        let users = map(pfUsers, {pfUserToUser($0)})
-                        callback(users)
+            if objects != nil {
+                let seenIDS = map(objects!, {$0.objectForKey("toUser")!})
+                PFUser.query()!
+                    .whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
+                    .whereKey("objectId", notContainedIn: seenIDS)
+                    .findObjectsInBackgroundWithBlock( {
+                        objects, error in
+                        if let pfUsers = objects as? [PFUser] {
+                            /* map is creating an array of Users (Class User) */
+                            let users = map(pfUsers, {pfUserToUser($0)})
+                            callback(users)
+                        }
                     }
-                    
-                }
-            )
+                )
+            }
         }
 }
 

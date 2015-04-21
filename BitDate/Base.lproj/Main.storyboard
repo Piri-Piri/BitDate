@@ -103,12 +103,12 @@
         <scene sceneID="kQO-e8-gFy">
             <objects>
                 <tableViewController id="OCh-NP-Ygg" customClass="MatchesTableViewController" customModule="BitDate" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Za3-1W-Xwd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="22" sectionFooterHeight="22" id="Za3-1W-Xwd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="82" id="8aJ-bf-9zy" customClass="UserCell" customModule="BitDate" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="82" id="8aJ-bf-9zy" customClass="UserCell" customModule="BitDate" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8aJ-bf-9zy" id="PPw-1e-GVK">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -231,7 +231,6 @@
                         <outlet property="cardStackView" destination="aG1-Og-rur" id="3N6-xf-Fsr"/>
                         <outlet property="nahButton" destination="ABL-Ox-T7a" id="IgE-FG-pEB"/>
                         <outlet property="yeahButton" destination="Tr2-i6-6ea" id="jp5-pb-Fbx"/>
-                        <outlet property="yeahButtonPressed" destination="Tr2-i6-6ea" id="Cvc-z3-cHC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qt1-oa-b4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
