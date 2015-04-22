@@ -36,6 +36,9 @@
 		6358F3E31AE67F2900F78CDC /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6358F3E21AE67F2900F78CDC /* Match.swift */; };
 		6358F3E51AE6944500F78CDC /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6358F3E41AE6944500F78CDC /* ChatViewController.swift */; };
 		63E7A7081AD431DF00B832AF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7A7071AD431DF00B832AF /* LoginViewController.swift */; };
+		63FA4A621AE6FD7200F36645 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FA4A611AE6FD7200F36645 /* libicucore.dylib */; };
+		63FA4A641AE6FD8200F36645 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FA4A631AE6FD8200F36645 /* libc++.dylib */; };
+		63FA4A661AE6FDB300F36645 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FA4A651AE6FDB300F36645 /* Message.swift */; };
 		6C5FEFF9DDADB93D375FF0C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F6DF9FA33DDC4C03920780 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +88,9 @@
 		6358F3E21AE67F2900F78CDC /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		6358F3E41AE6944500F78CDC /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		63E7A7071AD431DF00B832AF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		63FA4A611AE6FD7200F36645 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		63FA4A631AE6FD8200F36645 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		63FA4A651AE6FDB300F36645 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		89E472F8BF2638B06505C9AE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		97F6DF9FA33DDC4C03920780 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -94,9 +100,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6320C7081AD7318F00EA7939 /* ParseFacebookUtils.framework in Frameworks */,
+				63FA4A641AE6FD8200F36645 /* libc++.dylib in Frameworks */,
+				63FA4A621AE6FD7200F36645 /* libicucore.dylib in Frameworks */,
 				6309B6441ACB4DE0003F3130 /* libsqlite3.dylib in Frameworks */,
 				6309B6421ACB4DD4003F3130 /* libz.dylib in Frameworks */,
+				6320C7081AD7318F00EA7939 /* ParseFacebookUtils.framework in Frameworks */,
 				6309B6401ACB4DBD003F3130 /* SystemConfiguration.framework in Frameworks */,
 				6309B63E1ACB4DB2003F3130 /* StoreKit.framework in Frameworks */,
 				6309B63C1ACB4DAA003F3130 /* Security.framework in Frameworks */,
@@ -231,6 +239,7 @@
 			children = (
 				633B60771AD481F000CB6587 /* User.swift */,
 				6358F3E21AE67F2900F78CDC /* Match.swift */,
+				63FA4A651AE6FDB300F36645 /* Message.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -247,6 +256,8 @@
 		F8FFC418C1D7FC6919D64675 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63FA4A631AE6FD8200F36645 /* libc++.dylib */,
+				63FA4A611AE6FD7200F36645 /* libicucore.dylib */,
 				97F6DF9FA33DDC4C03920780 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -396,6 +407,7 @@
 				6309B6011ACB27CA003F3130 /* AppDelegate.swift in Sources */,
 				633B607A1AD483AF00CB6587 /* ProfileViewController.swift in Sources */,
 				6358F3E31AE67F2900F78CDC /* Match.swift in Sources */,
+				63FA4A661AE6FDB300F36645 /* Message.swift in Sources */,
 				6337EB1B1AE1C131008060FE /* UserCell.swift in Sources */,
 				6358F3E51AE6944500F78CDC /* ChatViewController.swift in Sources */,
 				633B60781AD481F000CB6587 /* User.swift in Sources */,
