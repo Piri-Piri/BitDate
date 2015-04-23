@@ -21,12 +21,12 @@ func fetchMatches(callBack: ([Match]) -> ()) {
         objects, error in
             if let matches = objects as? [PFObject] {
                 
-                let matchedUser = matches.map({
+                let matchedUsers = matches.map({
                     (object)->(matchID: String, userID: String)
                     in
                     (object.objectId! as String, object.objectForKey("toUser") as! String)
                 })
-                let userIDs = matchedUser.map({$0.userID})
+                let userIDs = matchedUsers.map({$0.userID})
                 
                 PFUser.query()?
                     .whereKey("objectId", containedIn: userIDs)
@@ -38,7 +38,7 @@ func fetchMatches(callBack: ([Match]) -> ()) {
                             println(users)
                             var m: [Match] = []
                             for (index, user) in enumerate(users) {
-                                m.append(Match(id: matchedUser[index].matchID, user: pfUserToUser(user)))
+                                m.append(Match(id: matchedUsers[index].matchID, user: pfUserToUser(user)))
                             }
                             callBack(m)
                         }
