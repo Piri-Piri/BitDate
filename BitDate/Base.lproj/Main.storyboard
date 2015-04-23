@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NBu-nw-Qt6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NBu-nw-Qt6">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -123,7 +123,17 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctw-ce-j2B">
                                             <rect key="frame" x="91" y="30" width="501" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MatchId: xxxxxxxxx" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMl-1p-QWc">
+                                            <rect key="frame" x="234" y="60" width="358" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="9KN-mK-0fM"/>
+                                                <constraint firstAttribute="width" constant="358" id="iCN-rq-Z8r"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -132,11 +142,14 @@
                                         <constraint firstItem="ctw-ce-j2B" firstAttribute="top" secondItem="PPw-1e-GVK" secondAttribute="topMargin" constant="22" id="Oig-mS-32e"/>
                                         <constraint firstItem="i2g-EU-Fmz" firstAttribute="top" secondItem="PPw-1e-GVK" secondAttribute="topMargin" constant="-5" id="Z0c-tK-LgK"/>
                                         <constraint firstItem="ctw-ce-j2B" firstAttribute="leading" secondItem="i2g-EU-Fmz" secondAttribute="trailing" constant="8" id="bM4-OG-gcf"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="LMl-1p-QWc" secondAttribute="bottom" constant="-8" id="iCb-Wx-Kvm"/>
                                         <constraint firstItem="i2g-EU-Fmz" firstAttribute="leading" secondItem="PPw-1e-GVK" secondAttribute="leadingMargin" id="oml-Ea-rwt"/>
+                                        <constraint firstItem="LMl-1p-QWc" firstAttribute="trailing" secondItem="PPw-1e-GVK" secondAttribute="trailingMargin" id="r92-dk-Slc"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avatarImageView" destination="i2g-EU-Fmz" id="C1V-Dq-pNa"/>
+                                    <outlet property="matchIdLabel" destination="LMl-1p-QWc" id="h3B-YE-kU3"/>
                                     <outlet property="nameLabel" destination="ctw-ce-j2B" id="lMv-Go-egc"/>
                                 </connections>
                             </tableViewCell>

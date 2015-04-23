@@ -61,6 +61,7 @@ class MatchesTableViewController: UITableViewController {
             image in
             cell.avatarImageView.image = image
         })
+        cell.matchIdLabel.text = "MatchId: \(matches[indexPath.row].id)"
         return cell
     }
     

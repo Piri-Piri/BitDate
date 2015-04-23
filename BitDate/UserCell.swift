@@ -12,6 +12,7 @@ class UserCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var matchIdLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
