@@ -96,9 +96,12 @@ class ChatViewController: JSQMessagesViewController {
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         
-        let m = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
-        self.messages.append(m)
+        /*
+            message add remove after implemeting the realtime listener to avoid dopple message posts
 
+            let m = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
+            self.messages.append(m)
+        */
         
         if let id = matchId {
             saveMessage(id, Message(message: text, senderId: senderId, date: date))
