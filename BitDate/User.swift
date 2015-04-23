@@ -61,25 +61,36 @@ func fetchUnviewedUsers(callback: ([User]) -> ()) {
 
 func saveLike(user: User) {
     PFQuery(className: "Action")
-    .whereKey("byUser", equalTo: user.id)
-    .whereKey("toUser", equalTo: PFUser.currentUser()!.objectId!)
-    .whereKey("type", equalTo: "liked")
-    .getFirstObjectInBackgroundWithBlock( {
-        object, error in
-        
-        var matched = false
-        if let user = object {
-            matched = true
-            user.setObject("matched", forKey: "type")
-            user.saveInBackgroundWithBlock(nil)
-        }
-        
-        let match = PFObject(className: "Action")
-        match.setObject(PFUser.currentUser()!.objectId!, forKey: "byUser")
-        match.setObject(user.id, forKey: "toUser")
-        match.setObject(matched ? "matched" : "liked", forKey: "type")
-        match.saveInBackgroundWithBlock(nil)
-    })
+        .whereKey("byUser", equalTo: user.id)
+        .whereKey("toUser", equalTo: PFUser.currentUser()!.objectId!)
+        .whereKey("type", equalTo: "liked")
+        .getFirstObjectInBackgroundWithBlock( {
+            object, error in
+            
+            // create a unique chatroom (matchId)
+            let matchId = PFUser.currentUser()!.objectId! + "-" + user.id
+            
+            var matched = false
+            if let object = object {
+                matched = true
+                object.setObject("matched", forKey: "type")
+                object.setObject(matchId, forKey: "matchId")
+                object.saveInBackgroundWithBlock(nil)
+            }
+            
+            let match = PFObject(className: "Action")
+            match.setObject(PFUser.currentUser()!.objectId!, forKey: "byUser")
+            match.setObject(user.id, forKey: "toUser")
+            
+            if matched {
+                match.setObject("matched", forKey: "type")
+                match.setObject(matchId, forKey: "matchId")
+            }
+            else {
+                match.setObject("liked", forKey: "type")
+            }
+            match.saveInBackgroundWithBlock(nil)
+        })
 }
 
 func saveSkip(user: User) {
