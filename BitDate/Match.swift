@@ -34,7 +34,6 @@ func fetchMatches(callBack: ([Match]) -> ()) {
                     .findObjectsInBackgroundWithBlock({
                         objects, error in
                         if let users = objects as? [PFUser] {
-                            println(users)
                             var m: [Match] = []
                             for (index, user) in enumerate(users) {
                                 m.append(Match(id: matchedUsers[index].matchID, user: pfUserToUser(user)))
