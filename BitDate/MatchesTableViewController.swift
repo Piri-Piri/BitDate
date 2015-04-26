@@ -69,7 +69,7 @@ class MatchesTableViewController: UITableViewController {
         let vc = ChatViewController()
         
         let match = matches[indexPath.row]
-        vc.matchId = match.id
+        vc.match = match
         vc.title = match.user.name
         self.navigationController?.pushViewController(vc, animated: true)
         

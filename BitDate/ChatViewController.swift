@@ -13,23 +13,23 @@ class ChatViewController: JSQMessagesViewController {
     
     var messages: [JSQMessage] = []
     
-    var matchId: String?
+    var match: Match?
     
     var messageListener: MessageListener?
     
     let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor())
     let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
     
+    var outgoingAvatar: UIImage!
+    var incomingAvatar: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
-        collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
-        
         collectionView.collectionViewLayout.springinessEnabled = true
         
-        if let id = matchId {
+        if let id = match?.id {
             fetchMessages(id, {
                 messages in
                 for m in messages {
@@ -42,9 +42,10 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if let id = matchId {
+        if let id = match?.id {
             messageListener = MessageListener(matchId: id, startDate: NSDate(), callback: {
                 message in
+                JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
                 self.messages.append(JSQMessage(senderId: message.senderId, senderDisplayName: message.senderId, date: message.date, text: message.message))
                 self.finishReceivingMessage()
             })
@@ -75,6 +76,12 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
+    func updateAvatarImageForItemAtIndexPatch(indexPath: NSIndexPath, avatarImage: UIImage) {
+        if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? JSQMessagesCollectionViewCell {
+            cell.avatarImageView.image = JSQMessagesAvatarImageFactory.circularAvatarImage(avatarImage, withDiameter: 60)
+        }
+    }
+    
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         return self.messages[indexPath.row]
     }
@@ -94,7 +101,38 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
+    override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
+        var avatarImage = JSQMessagesAvatarImage.avatarWithImage(JSQMessagesAvatarImageFactory.circularAvatarImage(UIImage(named: "profile-header"), withDiameter: 60))
+        if self.messages[indexPath.row].senderId == self.senderId {
+            if let avatar = self.outgoingAvatar {
+                avatarImage = JSQMessagesAvatarImage.avatarWithImage(JSQMessagesAvatarImageFactory.circularAvatarImage(avatar, withDiameter: 60))
+            }
+            else {
+                currentUser()?.getPhoto( {
+                    image in
+                    self.outgoingAvatar = image
+                    self.updateAvatarImageForItemAtIndexPatch(indexPath, avatarImage: image)
+                })
+            }
+        }
+        else {
+            if let avatar = self.incomingAvatar {
+                avatarImage = JSQMessagesAvatarImage.avatarWithImage(JSQMessagesAvatarImageFactory.circularAvatarImage(avatar, withDiameter: 60))
+            }
+            else {
+                match?.user.getPhoto( {
+                    image in
+                    self.incomingAvatar = image
+                    self.updateAvatarImageForItemAtIndexPatch(indexPath, avatarImage: image)
+                })
+            }
+        }
+        return avatarImage
+    }
+    
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
+        
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
         /*
             message add remove after implemeting the realtime listener to avoid dopple message posts
@@ -103,7 +141,7 @@ class ChatViewController: JSQMessagesViewController {
             self.messages.append(m)
         */
         
-        if let id = matchId {
+        if let id = match?.id {
             saveMessage(id, Message(message: text, senderId: senderId, date: date))
         }
         
