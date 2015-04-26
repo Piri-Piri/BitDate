@@ -30,11 +30,10 @@ func fetchMatches(callBack: ([Match]) -> ()) {
                 
                 PFUser.query()?
                     .whereKey("objectId", containedIn: userIDs)
-                    //.orderByAscending("objectId")
+                    .orderByDescending("createdAt")
                     .findObjectsInBackgroundWithBlock({
                         objects, error in
                         if let users = objects as? [PFUser] {
-                            var users = reverse(users)
                             println(users)
                             var m: [Match] = []
                             for (index, user) in enumerate(users) {
