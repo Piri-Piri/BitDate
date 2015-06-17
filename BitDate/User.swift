@@ -18,6 +18,9 @@ struct User {
         let imageFile = pfUser.objectForKey("picture") as! PFFile
         imageFile.getDataInBackgroundWithBlock({
         data, error in
+            if error != nil {
+                print(error)
+            }
             if let data = data {
                 callback(UIImage(data: data)!)
             }
@@ -42,7 +45,7 @@ func fetchUnviewedUsers(callback: ([User]) -> ()) {
         .findObjectsInBackgroundWithBlock {
         objects, error in
             if objects != nil {
-                let seenIDS = map(objects!, {$0.objectForKey("toUser")!})
+                let seenIDS = (objects!).map({$0.objectForKey("toUser")!})
                 PFUser.query()!
                     .whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
                     .whereKey("objectId", notContainedIn: seenIDS)
@@ -50,7 +53,7 @@ func fetchUnviewedUsers(callback: ([User]) -> ()) {
                         objects, error in
                         if let pfUsers = objects as? [PFUser] {
                             /* map is creating an array of Users (Class User) */
-                            let users = map(pfUsers, {pfUserToUser($0)})
+                            let users = pfUsers.map({pfUserToUser($0)})
                             callback(users)
                         }
                     }

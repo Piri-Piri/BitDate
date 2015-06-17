@@ -27,10 +27,10 @@ class ChatViewController: JSQMessagesViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        collectionView.collectionViewLayout.springinessEnabled = true
+        collectionView!.collectionViewLayout.springinessEnabled = true
         
         if let id = match?.id {
-            fetchMessages(id, {
+            fetchMessages(id, callback: {
                 messages in
                 for m in messages {
                     self.messages.append(JSQMessage(senderId: m.senderId, senderDisplayName: m.senderId, date: m.date, text: m.message))
@@ -77,8 +77,8 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func updateAvatarImageForItemAtIndexPatch(indexPath: NSIndexPath, avatarImage: UIImage) {
-        if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? JSQMessagesCollectionViewCell {
-            cell.avatarImageView.image = JSQMessagesAvatarImageFactory.circularAvatarImage(avatarImage, withDiameter: 60)
+        if let cell = collectionView!.cellForItemAtIndexPath(indexPath) as? JSQMessagesCollectionViewCell {
+            cell.avatarImageView!.image = JSQMessagesAvatarImageFactory.circularAvatarImage(avatarImage, withDiameter: 60)
         }
     }
     
@@ -92,7 +92,7 @@ class ChatViewController: JSQMessagesViewController {
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
         
-        var data = self.messages[indexPath.row]
+        let data = self.messages[indexPath.row]
         if data.senderId == PFUser.currentUser()!.objectId {
             return outgoingBubble
         }
@@ -142,7 +142,7 @@ class ChatViewController: JSQMessagesViewController {
         */
         
         if let id = match?.id {
-            saveMessage(id, Message(message: text, senderId: senderId, date: date))
+            saveMessage(id, message: Message(message: text, senderId: senderId, date: date))
         }
         
         finishSendingMessage()

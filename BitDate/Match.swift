@@ -35,7 +35,7 @@ func fetchMatches(callBack: ([Match]) -> ()) {
                         objects, error in
                         if let users = objects as? [PFUser] {
                             var m: [Match] = []
-                            for (index, user) in enumerate(users) {
+                            for (index, user) in users.enumerate() {
                                 m.append(Match(id: matchedUsers[index].matchID, user: pfUserToUser(user)))
                             }
                             callBack(m)

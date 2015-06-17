@@ -26,21 +26,21 @@ class LoginViewController: UIViewController {
         PFFacebookUtils.logInWithPermissions(["public_profile", "user_about_me", "user_birthday"], block: {
             user, error in
             if user == nil {
-                println("Error. The user cancelled the Facebook login.")
+                print("Error. The user cancelled the Facebook login.")
                 // Add UIAlertController to inform user before pushing back to app store
                 return
             }
             else if user!.isNew {
-                println("User signed up and logged in through Facebook!")
+                print("User signed up and logged in through Facebook!")
                 
                 FBRequestConnection.startWithGraphPath("/me?fields=picture,first_name,birthday,gender", completionHandler: {
                 connection, result, error in
-                    var r = result as! NSDictionary
+                    let r = result as! NSDictionary
                     
                     user!["firstName"] = r["first_name"]
                     user!["gender"] = r["gender"]
                     
-                    var dateformatter = NSDateFormatter()
+                    let dateformatter = NSDateFormatter()
                     dateformatter.dateFormat = "dd.MM.yyyy"
                     user!["birthday"] = dateformatter.dateFromString(r["birthday"] as! String)
                     
@@ -52,12 +52,12 @@ class LoginViewController: UIViewController {
                     NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {
                         response, data, error in
                         
-                        let imageFile = PFFile(name: "avatar.jpg", data: data)
+                        let imageFile = PFFile(name: "avatar.jpg", data: data!)
                         user!["picture"] = imageFile
                         user!.saveInBackgroundWithBlock({
                             success, error in
-                            println(success)
-                            println(error)
+                            print(success)
+                            print(error)
                         })
                         
                     })
@@ -66,7 +66,7 @@ class LoginViewController: UIViewController {
                 
             }
             else {
-                println("User logged in through Facebook!")
+                print("User logged in through Facebook!")
             }
             
             /* 

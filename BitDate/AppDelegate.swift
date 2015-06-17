@@ -20,14 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("KQYdnHODuSjCBVOsydnCUusUTlOnSuAOQUSVT28J", clientKey: "rPKLUo5XQckQ3YxXlA5cN2FWdjBZFuwl4EFqwR0I")
         PFFacebookUtils.initializeFacebook()
         
-        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var initialVC: UIViewController
         
         if currentUser() != nil {
             initialVC = pageController
         }
         else {
-            initialVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
+            initialVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as UIViewController
         }
         self.window?.rootViewController = initialVC
         self.window?.makeKeyAndVisible()
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication, withSession: PFFacebookUtils.session())
     }
 

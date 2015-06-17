@@ -41,11 +41,11 @@ class CardView: UIView {
     }
     
     private func initialize() {
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = UIColor.clearColor()
         addSubview(imageView)
         
-        nameLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(nameLabel)
         
         backgroundColor = UIColor.whiteColor()

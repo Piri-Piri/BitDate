@@ -86,7 +86,7 @@ class SwipeView: UIView {
             
             
         default:
-            println("Default trigged for GestureRecognizer")
+            print("Default trigged for GestureRecognizer")
             break
         }
         
