@@ -67,18 +67,20 @@ func saveLike(user: User) {
         .whereKey("byUser", equalTo: user.id)
         .whereKey("toUser", equalTo: PFUser.currentUser()!.objectId!)
         .whereKey("type", equalTo: "liked")
-        .getFirstObjectInBackgroundWithBlock( {
-            object, error in
+        .findObjectsInBackgroundWithBlock( {
+            objects, error in
             
             // create a unique chatroom (matchId)
             let matchId = PFUser.currentUser()!.objectId! + "-" + user.id
             
             var matched = false
-            if let object = object {
+            if let objects = objects  {
                 matched = true
-                object.setObject("matched", forKey: "type")
-                object.setObject(matchId, forKey: "matchId")
-                object.saveInBackgroundWithBlock(nil)
+                print(objects[0], appendNewline: true)
+                print(objects.count, appendNewline: true)
+                objects[0].setObject("matched", forKey: "type")
+                objects[0].setObject(matchId, forKey: "matchId")
+                objects[0].saveInBackgroundWithBlock(nil)
             }
             
             let match = PFObject(className: "Action")
